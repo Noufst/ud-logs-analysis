@@ -58,7 +58,7 @@ if __name__ == '__main__':
     print('3. On which days did more than 1% of requests lead to errors?')
     rows = executeQuery("""
     SELECT TO_CHAR(date,'Mon dd, yyyy') AS date,
-    ROUND(num_of_erros::decimal / num_of_requests::decimal * 100, 1)
+    ROUND(num_of_erros::decimal / num_of_requests::decimal * 100, 2)
     AS error_percentage
     FROM requests_status
     WHERE num_of_erros::decimal / num_of_requests::decimal > 0.01;
