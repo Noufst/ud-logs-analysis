@@ -1,11 +1,21 @@
 import psycopg2
 
+#!/usr/bin/env python3
+
+def connect(database_name="news"):
+    try:
+        db = psycopg2.connect("dbname={}".format(database_name))
+        cursor = db.cursor()
+        return db, cursor
+    except:
+        print("<error message>")
 
 def executeQuery(query):
-    db = psycopg2.connect(database="news")
-    c = db.cursor()
-    c.execute(query)
-    result = c.fetchall()
+    db, cursor = connect();
+    #db = psycopg2.connect(database="news")
+    #c = db.cursor()
+    cursor.execute(query)
+    result = cursor.fetchall()
     db.close()
     return result
 
